@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Game</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <div id = "game"> 
+
+        <!--menu-->
+        <div id = "menu"> 
+            <h1> Maze Game </h1>
+            <h4> Select a difficulty to begin! </h4>
+            <select id = "difficulty">
+                <option value = "10"> Easy </option>
+                <option value = "15"> Medium </option>
+                <option value = "20"> Hard </option>
+                <option value = "25"> Extra Hard </option>
+                <option value = "30"> Boss </option>
+            </select>
+
+            <button id = 'startGame'> Start Game</button>
+
+        </div>
+
+        <!--Maze board-->
+        <canvas id = "mazeBoard"> width = "1000" height = "1000" </canvas>
+
+         <div id = "victory" style = "display: none;">
+            <h1> Congratulations! </h1>
+            <p> You complete the game in <span id = "numCount"> 0 </span> moves.</p>
+            <button onclick = "restartGame()"> Play Again </button>
+            </span></p>
+         </div>
+    </div>
+
+    <!--Jquery and TouchSwipe-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchSwipe/1.6.18/jquery.touchSwipe.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

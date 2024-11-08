@@ -1,0 +1,29 @@
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu {
+    margin-bottom: 20px;
+}
+
+#mazeBoard {
+    border: 2px solid black;
+}
+
+#victory {
+position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+#victory h1 {
+    margin: 0;
+}
