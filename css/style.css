@@ -12,7 +12,7 @@
     border: 2px solid black;
 }
 
-#victory {
+#endMessage {
 position: fixed;
   top: 50%;
   left: 50%;
@@ -24,6 +24,6 @@ position: fixed;
   border-radius: 8px;
 }
 
-#victory h1 {
+#endMessage h1 {
     margin: 0;
 }

@@ -27,9 +27,9 @@
         </div>
 
         <!--Maze board-->
-        <canvas id = "mazeBoard"> width = "1000" height = "1000" </canvas>
+        <canvas id = "mazeBoard" width = "500" height = "500">  </canvas>
 
-         <div id = "victory" style = "display: none;">
+         <div id = "endMessage" style = "display: none;">
             <h1> Congratulations! </h1>
             <p> You complete the game in <span id = "numCount"> 0 </span> moves.</p>
             <button onclick = "restartGame()"> Play Again </button>
@@ -39,7 +39,7 @@
 
     <!--Jquery and TouchSwipe-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchSwipe/1.6.18/jquery.touchSwipe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.js"></script>
     <script src="js/script.js"></script>
 
 </body>

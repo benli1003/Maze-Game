@@ -6,7 +6,7 @@ let cellSize, maze, player, goal, moves;
 //start function
 function start() {
     const size = parseInt(document.getElementById('difficulty').value); //grid size based on diffculty
-    cellSize = Math.floor(1000 / size); //calculate cell size
+    cellSize = Math.floor(board.width / size); //calculate cell size
     createMaze(size);
     moves = 0; //reset # of moves
     drawMaze();
@@ -23,24 +23,40 @@ function createMaze(size) {
 }
 
 //generate the maze
-function generateMaze() {
-    //array of directions
+function generateMaze(x, y) {
+    // Array of directions
     const directions = shuffle(["up", "down", "left", "right"]);
     maze[x][y] = 0;
-
-    //direction calculation
+    
+    // Direction calculation
     directions.forEach(dir => {
-        //determines what the current direction is
-        const nx = x + (dir === "left" ? -1 : dir === "right" ? 1 : 0);
-        const ny = y + (dir === "up" ? -1 : dir === "down" ? 1 : 0);
-
-        //bound checks current direction to make sure direction is within maze
-        if (nx >= 0 && nx < maze.length && ny >= 0 && ny < maze.length && maze[nx][ny] === 1) {
-            maze[x + (nx - x) / 2][y + (ny - y) / 2] = 0; //ensure adject path is connected
-            generateMaze(nx, ny); //recursively calls to create a path
+        let nx = x;
+        let ny = y;
+        // Move by two cells to create pathways and ensure walls remain
+        if (dir === "left") {
+            nx = x - 2;
+        } 
+        else if (dir === "right") {
+            nx = x + 2;
+        } 
+        else if (dir === "up") {
+            ny = y - 2;
+        } 
+        else if (dir === "down") {
+            ny = y + 2;
+        }
+    
+        // Check if the new position is within bounds and is a wall
+        if (nx >= 0 && nx < maze.length && ny >= 0 && ny < maze[0].length && maze[nx][ny] === 1) {
+            // Remove wall between current cell and new cell to create a path
+            maze[(x + nx) / 2][(y + ny) / 2] = 0;
+            maze[nx][ny] = 0;
+            generateMaze(nx, ny); // Recursively create paths
         }
     });
 }
+
+
 
 //shuffles the direction the path is carved to create a unique maze
 function shuffle(array) {
@@ -95,8 +111,48 @@ function setPlayerAndGoal(size) {
   
     //check if the player has reached the goal
     if (x === goal.x && y === goal.y) {
-      displayVictoryMessage();
+      displayVictory();
     }
   }
 
+  function displayVictory() {
+    document.getElementById("endMessage").style.display = "block";
+    document.getElementById("numCount").innerText = moves; // Update the move count
+  }
+
+  function restartGame() {
+    document.getElementById("endMessage").style.display = "none";
+    start();
+  }
+
+  $(document).ready(function() {
+    $('#mazeBoard').swipe({
+      swipe: function(event, direction) {
+        if (direction === 'up') movePlayer('up');
+        if (direction === 'down') movePlayer('down');
+        if (direction === 'left') movePlayer('left');
+        if (direction === 'right') movePlayer('right');
+      },
+      threshold: 20 // Minimum distance (in pixels) to be considered a swipe
+    });
+  });
   
+  // Start the game on button click
+  $('#startGame').on('click', start);
+
+  document.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            movePlayer('up');
+            break;
+        case 'ArrowDown':
+            movePlayer('down');
+            break;
+        case 'ArrowLeft':
+            movePlayer('left');
+            break;
+        case 'ArrowRight':
+            movePlayer('right');
+            break;
+    }
+});
