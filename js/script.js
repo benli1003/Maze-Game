@@ -45,4 +45,58 @@ function generateMaze() {
 //shuffles the direction the path is carved to create a unique maze
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
+}
+
+  //draw maze
+function drawMaze() {
+    context.clearRect(0,0, board.width, board.height); //clears maze
+    //draw each cell in the grid
+    for (let x = 0; x < maze.length; x++) {
+        for (let y = 0; y < maze[x].length; y++) {
+
+            //check what the cell is
+            if (maze[x][y] === 1) {
+                context.fillStyle = "black";
+              } else {
+                context.fillStyle = "white";
+              }
+
+            context.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+      }
+
+      context.fillStyle = "blue"; // Player color
+      context.fillRect(player.x * cellSize, player.y * cellSize, cellSize, cellSize);
+      context.fillStyle = "green"; // Goal color
+      context.fillRect(goal.x * cellSize, goal.y * cellSize, cellSize, cellSize);    
   }
+ 
+//set initial position of player and goal
+function setPlayerAndGoal(size) {
+    player = {x: 0, y: 0};
+    goal = {x: size - 1, y: size - 1};
+ }
+
+ //moves the player around
+ function movePlayer(direction) {
+    //get current position of player
+    let {x, y}  = player;
+
+    //update position based on direciton
+    if (direction === 'up' && y > 0 && maze[x][y - 1] === 0) y--;
+    if (direction === 'down' && y < maze.length - 1 && maze[x][y + 1] === 0) y++;
+    if (direction === 'left' && x > 0 && maze[x - 1][y] === 0) x--;
+    if (direction === 'right' && x < maze[0].length - 1 && maze[x + 1][y] === 0) x++;
+    
+    //update location and increment moves
+    player = {x, y};
+    moves++;
+    drawMaze(); //redraw maze based on new posoiton
+  
+    //check if the player has reached the goal
+    if (x === goal.x && y === goal.y) {
+      displayVictoryMessage();
+    }
+  }
+
+  
