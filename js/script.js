@@ -140,6 +140,8 @@ function setPlayerAndGoal(size) {
   // Start the game on button click
   $('#startGame').on('click', start);
 
+
+  //listen for keyboard input to move block around
   document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowUp':
