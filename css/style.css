@@ -2,28 +2,100 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
 #menu {
     margin-bottom: 20px;
+    background-color: #f4f4f4;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#menu h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+#menu h4 {
+    font-size: 14px;
+    color: #666;
 }
 
 #mazeBoard {
-    border: 2px solid black;
+    border: 2px solid #555;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 #endMessage {
-position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    animation: popUp 0.5s ease-out;
 }
 
 #endMessage h1 {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #ffc107;
+}
+
+#endMessage p {
+    font-size: 16px;
     margin: 0;
+    color: #ddd;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#instructions {
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #333;
+}
+
+#instructions h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+#instructions p {
+    margin: 8px 0;
+}
+
+/* Keyframes for popup animation */
+@keyframes popUp {
+    from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }

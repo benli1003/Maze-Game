@@ -81,9 +81,9 @@ function drawMaze() {
         }
       }
 
-      context.fillStyle = "blue"; // Player color
+      context.fillStyle = "#007bff"; // Player color
       context.fillRect(player.x * cellSize, player.y * cellSize, cellSize, cellSize);
-      context.fillStyle = "green"; // Goal color
+      context.fillStyle = "#28a745"; // Goal color
       context.fillRect(goal.x * cellSize, goal.y * cellSize, cellSize, cellSize);    
   }
  
